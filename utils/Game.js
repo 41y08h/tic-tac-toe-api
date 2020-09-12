@@ -10,7 +10,6 @@ module.exports = class Game {
 
   chat(message, io, socket, room) {
     this.messages.push(message);
-    const lastMessage = this.messages[this.messages.length - 1];
     const socketId = socket.id;
     const firstUserId = room.users[0];
     const secondUserId = room.users[1];

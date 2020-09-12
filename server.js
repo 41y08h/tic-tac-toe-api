@@ -25,6 +25,13 @@ io.on("connection", (socket) => {
           .broadcast.emit("notification", "It's your turn!");
         // Notify second user that it's first's turn;
         socket.emit("notification", "Your opponent is playing!");
+        // Send all messages to second user
+        const rawMessages = lastRoom.game.messages;
+        const formattedMessages = rawMessages.map((message) => ({
+          isOfPlayer: false,
+          message,
+        }));
+        socket.emit("messages", formattedMessages);
       }
     });
   } else {
@@ -76,8 +83,6 @@ io.on("connection", (socket) => {
     // Find respective room
     const socketRoomName = Object.keys(socket.rooms)[1];
     const socketRoom = rooms.get(socketRoomName);
-    // Don't chat if there's no opponent
-    if (socketRoom.users.length < 2) return;
     socketRoom.game.chat(message, io, socket, socketRoom);
   });
 
