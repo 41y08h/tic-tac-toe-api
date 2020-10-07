@@ -1,5 +1,3 @@
-const Rooms = require("./Rooms");
-
 module.exports = class Game {
   constructor() {
     this.board = Array(9).fill(null);
