@@ -3,11 +3,8 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const { v4: uuidv4 } = require("uuid");
 const Room = require("./utils/Room");
-const Rooms = require("./utils/Rooms");
+const rooms = require("./utils/Rooms");
 const Game = require("./utils/Game");
-
-// States;
-const rooms = new Rooms();
 
 io.on("connection", (socket) => {
   // Check for space in last room;
