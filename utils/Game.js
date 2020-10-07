@@ -8,20 +8,18 @@ module.exports = class Game {
     this.messages = [];
   }
 
+  isWinner(socketId, userId) {
+    return socketId === userId;
+  }
+
   chat(message, io, socket, room) {
     this.messages.push(message);
     const socketId = socket.id;
     const firstUserId = room.users[0];
     const secondUserId = room.users[1];
-    if (socketId === firstUserId) {
-      // First user is winner
-      io.to(firstUserId).emit("message", { isOfPlayer: true, message });
-      io.to(secondUserId).emit("message", { isOfPlayer: false, message });
-    } else if (socketId === secondUserId) {
-      // Second user is winner
-      io.to(secondUserId).emit("message", { isOfPlayer: true, message });
-      io.to(firstUserId).emit("message", { isOfPlayer: false, message });
-    }
+
+    io.to(firstUserId).emit("message", { isOfPlayer: this.isWinner(socketId, firstUserId), message });
+    io.to(secondUserId).emit("message", { isOfPlayer: this.isWinner(socketId, secondUserId), message });
   }
 
   play(socket, room, index, callback) {
@@ -33,16 +31,11 @@ module.exports = class Game {
     if (!(room.users[this.player] === socket.id)) return;
     const newBoard = this.board.slice();
     if (this.board[index]) return;
-    if (this.player === 0) {
-      newBoard[index] = "X";
-      this.player = 1;
-    } else if (this.player === 1) {
-      newBoard[index] = "O";
-      this.player = 0;
-    }
+    newBoard[index] = (this.player === 0) ? "X" : "O";
+    this.player = +(!this.player);
     this.board = newBoard;
 
-    if (callback) callback();
+    if (callback && (callback instanceof Function)) callback();
   }
 
   checkWinner() {

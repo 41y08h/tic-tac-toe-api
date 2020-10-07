@@ -106,4 +106,4 @@ io.on("connection", (socket) => {
 
 const PORT = process.env.PORT || 3001;
 http.listen(PORT);
-console.log("Rocket launched with payload ${PORT} ===>");
+console.log(`Rocket launched with payload ${PORT} ===>`);
