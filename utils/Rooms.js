@@ -1,6 +1,10 @@
-module.exports = class Rooms {
+class Rooms {
   constructor() {
-    this.rooms = [];
+    if (Rooms.instance == null) {
+      this.rooms = [];
+      Rooms.instance = this;
+    }
+    return Rooms.instance;
   }
   add(room, callback) {
     this.rooms.push(room);
@@ -41,4 +45,8 @@ module.exports = class Rooms {
       return null;
     }
   }
-};
+}
+
+const rooms = new Rooms();
+Object.freeze(rooms);
+module.exports = rooms;
