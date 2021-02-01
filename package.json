@@ -1,8 +1,8 @@
 {
   "name": "tic-tac-toe-backend-mark-2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.1.0",
+  "description": "Backend for online multiplayer game",
+  "main": "server/index.js",
   "scripts": {
     "start": "node server",
     "dev": "cross-env NODE_ENV=development DEBUG=app,app:* nodemon server"
@@ -10,14 +10,10 @@
   "author": "Piyush",
   "license": "MIT",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.5.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",
     "mongoose": "^5.11.14",
-    "nanoid": "^3.1.20",
-    "redis": "^3.0.2",
-    "socket.io": "^2.3.0",
-    "uuid": "^8.3.0"
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
