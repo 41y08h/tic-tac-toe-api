@@ -1,5 +1,5 @@
 const Room = require("../models/Room");
-const events = require("../events");
+const events = require("../config/events");
 
 function configureGame(io) {
   io.on("connection", (socket) => {
