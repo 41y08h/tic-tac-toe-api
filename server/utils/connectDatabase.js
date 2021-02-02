@@ -11,8 +11,8 @@ async function connectDatabase() {
     });
     debug("connected");
 
-    const environmentIsProduction = process.env.NODE_ENV === "production";
-    if (environmentIsProduction) await Room.deleteMany();
+    const environmentIsNotProduction = process.env.NODE_ENV !== "production";
+    if (environmentIsNotProduction) await Room.deleteMany();
   } catch (err) {
     debug(err.message);
     process.exit(1);
