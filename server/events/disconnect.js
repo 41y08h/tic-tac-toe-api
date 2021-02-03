@@ -1,5 +1,5 @@
 const Room = require("../models/Room");
-const eventConstants = require("./eventConstants");
+const eventConstants = require("../config/eventConstants");
 
 const onDisconnect = (socket, io) => async () => {
   const room = await Room.findOne({ players: socket.id }).select("_id").exec();

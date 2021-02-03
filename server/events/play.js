@@ -1,5 +1,5 @@
 const Room = require("../models/Room");
-const eventConstants = require("./eventConstants");
+const eventConstants = require("../config/eventConstants");
 
 function checkWinner(room) {
   const { board } = room;

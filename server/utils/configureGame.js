@@ -1,15 +1,13 @@
-const onPlay = require("../events/onPlay");
-const onJoin = require("../events/onJoin");
-const onMessage = require("../events/onMessage");
-const onDisconnect = require("../events/onDisconnect");
-const eventConstants = require("../events/eventConstants");
+const path = require("path");
+const onJoin = require("../events/join");
+const handleEventsByFileSystem = require("./handleEventsByFileSystem");
 
 function configureGame(io) {
   io.on("connection", (socket) => {
-    onJoin(socket, io)();
-    socket.on(eventConstants.play, onPlay(socket, io));
-    socket.on(eventConstants.message, onMessage(socket, io));
-    socket.on("disconnect", onDisconnect(socket, io));
+    const pathToEventsDirectory = path.join(__dirname, "../events/");
+    onJoin(socket, io).then(() =>
+      handleEventsByFileSystem(socket, io, pathToEventsDirectory)
+    );
   });
 }
 

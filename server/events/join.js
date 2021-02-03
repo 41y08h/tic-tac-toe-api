@@ -1,7 +1,7 @@
 const Room = require("../models/Room");
-const eventConstants = require("./eventConstants");
+const eventConstants = require("../config/eventConstants");
 
-const onJoin = (socket, io) => async () => {
+async function onJoin(socket, io) {
   let room = await Room.findOne().sort({ _id: -1 }).limit(1);
   const hasSeats = room && !room.used;
 
@@ -33,6 +33,6 @@ const onJoin = (socket, io) => async () => {
 
   // Sync board
   io.to(room.id).emit(eventConstants.play, room.board);
-};
+}
 
 module.exports = onJoin;
