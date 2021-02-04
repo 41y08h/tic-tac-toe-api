@@ -8,11 +8,13 @@ const onMessage = (socket, io) => async (text) => {
     { $push: { messages: message } }
   );
 
-  const { _id: roomId } = await Room.findOne({ players: socket.id })
-    .select("_id")
+  const { players } = await Room.findOne({ players: socket.id })
+    .select("players")
     .exec();
 
-  io.to(roomId).emit(eventConstants.message, message);
+  players.forEach((playerId) => {
+    io.to(playerId).emit(eventConstants.message, message);
+  });
 };
 
 module.exports = onMessage;
