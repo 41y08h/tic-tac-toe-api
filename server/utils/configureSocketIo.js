@@ -5,7 +5,6 @@ function configureSocketIo(server) {
     cors: {
       origin: config.clientURL,
       methods: ["GET", "POST"],
-      credentials: true,
     },
   });
 
