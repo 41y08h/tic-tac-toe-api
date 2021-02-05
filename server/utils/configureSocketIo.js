@@ -4,6 +4,7 @@ function configureSocketIo(server) {
   const io = require("socket.io")(server, {
     cors: {
       origin: config.clientURL,
+      credentials: true,
     },
   });
 
