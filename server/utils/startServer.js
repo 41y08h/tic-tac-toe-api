@@ -1,6 +1,6 @@
 const debug = require("debug")("app");
 
-function startServer(server) {
+function startServer(app) {
   const PORT = process.env.PORT || 5000;
   const environment = process.env.NODE_ENV;
 
@@ -8,7 +8,7 @@ function startServer(server) {
     debug(`started in ${environment} mode at port ${PORT}`);
   }
 
-  return server.listen(PORT, onServerStart);
+  return app.listen(PORT, onServerStart);
 }
 
 module.exports = startServer;
