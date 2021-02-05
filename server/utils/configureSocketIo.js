@@ -2,9 +2,8 @@ const config = require("../config");
 
 function configureSocketIo(server) {
   const io = require("socket.io")(server, {
-    cors: {
-      origin: "*",
-    },
+    cors: true,
+    origins: [config.clientURL],
   });
 
   return io;
