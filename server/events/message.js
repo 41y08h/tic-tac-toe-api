@@ -1,20 +1,17 @@
 const Room = require("../models/Room");
-const eventConstants = require("../config/eventConstants");
+const { events } = require("../config/game");
 
 const onMessage = (socket, io) => async (text) => {
   const message = { playerId: socket.id, text };
-  await Room.updateOne(
-    { players: socket.id },
-    { $push: { messages: message } }
-  );
 
-  const { players } = await Room.findOne({ players: socket.id })
-    .select("players")
-    .exec();
+  // Update new message in database
+  const query = { players: socket.id };
+  const update = { $push: { messages: message } };
+  await Room.updateOne(query, update);
 
-  players.forEach((playerId) => {
-    io.to(playerId).emit(eventConstants.message, message);
-  });
+  // Emit message in websockets room
+  const roomId = Object.keys(socket.rooms)[1];
+  io.in(roomId).emit(events.message, message);
 };
 
 module.exports = onMessage;
