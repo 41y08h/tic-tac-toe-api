@@ -1,20 +1,16 @@
-const debug = require("debug")("app:database");
-const Room = require("../models/Room");
 const mongoose = require("mongoose");
-const config = require("../config");
+const debug = require("debug")("app:database");
+const { mongoURI } = require("../config");
 
 async function connectDatabase() {
   try {
-    await mongoose.connect(config.mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    debug("connected");
+    const options = { useNewUrlParser: true, useUnifiedTopology: true };
+    await mongoose.connect(mongoURI, options);
 
-    const environmentIsNotProduction = process.env.NODE_ENV !== "production";
-    if (environmentIsNotProduction) await Room.deleteMany();
+    debug("connected");
   } catch (err) {
-    debug(err.message);
+    // Log error and exit, as database is must for the whole app
+    console.error(err);
     process.exit(1);
   }
 }

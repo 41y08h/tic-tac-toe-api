@@ -1,4 +1,6 @@
-const environmentIsProduction = process.env.NODE_ENV === "production";
+/** Configs based on the environment */
+const environment = process.env.NODE_ENV;
+const config =
+  environment === "production" ? require("./prod") : require("./dev");
 
-if (environmentIsProduction) module.exports = require("./prod");
-else module.exports = require("./dev");
+module.exports = config;

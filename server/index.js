@@ -1,11 +1,6 @@
-const express = require("express");
-const app = express();
-
-const configureGame = require("./utils/configureGame");
+const configureGame = require("./game/configureGame");
 const connectDatabase = require("./utils/connectDatabase");
-const startServer = require("./utils/startServer");
+const logStartMessage = require("./utils/logStartMessage");
 
-const server = startServer(app);
-const io = require("socket.io").listen(server);
-
-connectDatabase().then(() => configureGame(io));
+logStartMessage();
+connectDatabase().then(configureGame);

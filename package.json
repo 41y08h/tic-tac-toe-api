@@ -1,21 +1,21 @@
 {
-  "name": "tic-tac-toe-backend-mark-2",
-  "version": "2.1.0",
-  "description": "Backend for online multiplayer game",
+  "name": "tic-tac-toe-backend-mark-3",
+  "version": "1.0.0",
+  "description": "",
   "main": "server/index.js",
   "scripts": {
     "start": "node server",
-    "dev": "cross-env NODE_ENV=development DEBUG=app,app:* nodemon server"
+    "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server"
   },
   "author": "Piyush",
   "license": "MIT",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "debug": "^4.3.1",
-    "express": "^4.17.1",
     "mongoose": "^5.11.15",
-    "socket.io": "^2.3.0"
+    "socket.io": "^3.1.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "nodemon": "^2.0.7"
   }
 }
