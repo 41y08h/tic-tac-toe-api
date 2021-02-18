@@ -4,7 +4,11 @@ const { mongoURI } = require("../config");
 
 async function connectDatabase() {
   try {
-    const options = { useNewUrlParser: true, useUnifiedTopology: true };
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    };
     await mongoose.connect(mongoURI, options);
 
     debug("connected");

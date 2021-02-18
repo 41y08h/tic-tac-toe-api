@@ -5,4 +5,5 @@ module.exports = {
   tieGame: "👔 Tie game 👔",
   winner: "🎉🎉 You won 🎉🎉",
   loser: "🙇‍♂️ Better luck next time 🙇‍♂️",
+  opponenetLeftGame: "🤵 Your opponent left the game",
 };
