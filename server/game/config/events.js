@@ -1,6 +1,10 @@
 module.exports = {
-  notification: "notification",
-  message: "message",
   play: "play",
+  message: "message",
   disconnect: "disconnect",
+  opponentId: "opponentId",
+  notification: "notification",
+  callPeer: "callPeer",
+  endCall: "endCall",
+  opponentIsCalling: "opponentIsCalling",
 };

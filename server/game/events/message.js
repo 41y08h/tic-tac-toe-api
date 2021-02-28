@@ -7,7 +7,6 @@ const onMessage = (socket, io) => async (text) => {
   const message = new Message({ text, bySocketId: socket.id });
 
   // Update new message in database
-
   const roomId = getRoomId(socket);
 
   const query = { _id: roomId };

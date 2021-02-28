@@ -1,11 +1,15 @@
 {
-  "name": "tic-tac-toe-backend-mark-3",
-  "version": "1.0.0",
+  "name": "tic-tac-toe-backend",
+  "version": "3.0.0",
+  "private": true,
   "description": "",
   "main": "server/index.js",
   "scripts": {
     "start": "node server",
-    "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server"
+    "dev": "concurrently \"npm run devServer\" \"npm run peerServer\"",
+    "devServer": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server",
+    "peerServer": "peerjs --port 5001"
+
   },
   "author": "Piyush",
   "license": "MIT",
@@ -16,6 +20,7 @@
     "socket.io": "^3.1.1"
   },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "nodemon": "^2.0.7"
   }
 }

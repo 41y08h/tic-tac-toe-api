@@ -3,6 +3,7 @@ const getIdlePlayer = require("../common/getIdlePlayer");
 const notifications = require("../../config/notifications");
 const sendNotification = require("../common/sendNotification");
 const sendPendingMessages = require("./sendPendingMessages");
+const events = require("../../config/events");
 
 async function toExisting(socket, io, room) {
   const player = new Player({ socketId: socket.id, symbol: "O" });
@@ -28,8 +29,14 @@ async function toExisting(socket, io, room) {
   ];
 
   sendNotification(io, ...notificationsToSend);
-
   sendPendingMessages(io, room);
+
+  // Send opponent's socket id
+  const playerOne = currentPlayer;
+  const playerTwo = idlePlayer;
+
+  io.to(playerOne.socketId).emit(events.opponentId, playerTwo.socketId);
+  io.to(playerTwo.socketId).emit(events.opponentId, playerOne.socketId);
 }
 
 module.exports = toExisting;

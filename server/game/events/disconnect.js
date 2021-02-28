@@ -23,6 +23,9 @@ const onDisconnect = (socket, io) => async () => {
     toId: room.id,
   };
   sendNotification(io, notificationToSend);
+
+  const roomCount = await Room.countDocuments();
+  debug(`${roomCount} room${roomCount > 1 ? "s" : ""} online`);
 };
 
 module.exports = onDisconnect;
