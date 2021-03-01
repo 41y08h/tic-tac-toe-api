@@ -24,6 +24,10 @@ const onDisconnect = (socket, io) => async () => {
   };
   sendNotification(io, notificationToSend);
 
+  // End call (if any) and delete opponent id to prevent calls
+  io.to(room.id).emit(events.endCall);
+  io.to(room.id).emit(events.opponentId, undefined);
+
   const roomCount = await Room.countDocuments();
   debug(`${roomCount} room${roomCount > 1 ? "s" : ""} online`);
 };

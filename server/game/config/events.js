@@ -7,4 +7,6 @@ module.exports = {
   callPeer: "callPeer",
   endCall: "endCall",
   opponentIsCalling: "opponentIsCalling",
+  rejectCall: "rejectCall",
+
 };
