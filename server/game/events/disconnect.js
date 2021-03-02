@@ -14,6 +14,9 @@ const onDisconnect = (socket, io) => async () => {
   room.players = room.players.filter((player) => player.socketId !== socket.id);
   await room.save();
 
+  // Let the other player know that his opponent disconnected
+  io.in(room.id).emit(events.isOpponentConnected, false);
+
   // Delete rooms with 0 players
   await Room.deleteMany({ players: { $size: 0 } });
 
@@ -23,10 +26,6 @@ const onDisconnect = (socket, io) => async () => {
     toId: room.id,
   };
   sendNotification(io, notificationToSend);
-
-  // End call (if any) and delete opponent id to prevent calls
-  io.to(room.id).emit(events.endCall);
-  io.to(room.id).emit(events.opponentId, undefined);
 
   const roomCount = await Room.countDocuments();
   debug(`${roomCount} room${roomCount > 1 ? "s" : ""} online`);

@@ -31,12 +31,8 @@ async function toExisting(socket, io, room) {
   sendNotification(io, ...notificationsToSend);
   sendPendingMessages(io, room);
 
-  // Send opponent's socket id
-  const playerOne = currentPlayer;
-  const playerTwo = idlePlayer;
-
-  io.to(playerOne.socketId).emit(events.opponentId, playerTwo.socketId);
-  io.to(playerTwo.socketId).emit(events.opponentId, playerOne.socketId);
+  // Send to both the players that their respective opponent is connected
+  io.in(room.id).emit(events.isOpponentConnected, true);
 }
 
 module.exports = toExisting;

@@ -2,11 +2,14 @@ module.exports = {
   play: "play",
   message: "message",
   disconnect: "disconnect",
-  opponentId: "opponentId",
   notification: "notification",
   callPeer: "callPeer",
   endCall: "endCall",
+  callEnded: "callEnded",
   opponentIsCalling: "opponentIsCalling",
   rejectCall: "rejectCall",
-
+  callRejected: "callRejected",
+  answerCall: "answerCall",
+  callAnswered: "callAnswered",
+  isOpponentConnected: "isOpponentConnected",
 };

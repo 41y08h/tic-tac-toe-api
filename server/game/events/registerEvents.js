@@ -3,6 +3,7 @@ const onPlay = require("./play");
 const onMessage = require("./message");
 const onEndCall = require("./endCall");
 const onRejectCall = require("./rejectCall");
+const onAnswerCall = require("./answerCall");
 const onCallPeer = require("./callPeer");
 const onDisconnect = require("./disconnect");
 const events = require("../config/events");
@@ -17,6 +18,7 @@ async function registerEvents(socket, io) {
   socket.on(events.callPeer, onCallPeer(socket, io));
   socket.on(events.endCall, onEndCall(socket, io));
   socket.on(events.rejectCall, onRejectCall(socket, io));
+  socket.on(events.answerCall, onAnswerCall(socket, io));
   socket.on(events.disconnect, onDisconnect(socket, io));
 }
 
