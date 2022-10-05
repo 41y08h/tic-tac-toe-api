@@ -6,10 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server",
-    "dev": "concurrently \"npm run devServer\" \"npm run peerServer\"",
-    "devServer": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server",
-    "peerServer": "peerjs --port 5001"
-
+    "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server"
   },
   "author": "Piyush",
   "license": "MIT",
