@@ -6,7 +6,7 @@
   "main": "server/main.js",
   "scripts": {
     "start": "node server",
-    "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server"
+    "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server/main.js"
   },
   "author": "Piyush",
   "license": "MIT",
