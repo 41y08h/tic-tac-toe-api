@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const debug = require("debug")("app:database");
-const { mongoURI } = require("../config");
+const { mongoURI, port } = require("./config");
+const configureGame = require("./game/configureGame");
 
 async function connectDatabase() {
   try {
@@ -19,4 +20,12 @@ async function connectDatabase() {
   }
 }
 
-module.exports = connectDatabase;
+async function main() {
+  const environment = process.env.NODE_ENV;
+  debug(`started in ${environment} mode on port ${port}`);
+
+  await connectDatabase();
+  configureGame();
+}
+
+main();

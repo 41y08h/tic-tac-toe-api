@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "description": "",
-  "main": "server/index.js",
+  "main": "server/main.js",
   "scripts": {
     "start": "node server",
     "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server"
