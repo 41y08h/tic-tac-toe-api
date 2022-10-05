@@ -11,16 +11,19 @@ function getWinner(room) {
   // Valid winning positions in a tic-tac-toe game
   const winningStacks = getWinningStacks(room.board);
 
-  function checkWinner(position) {
+  // Check if any one of the
+  // winning positions has equal values
+  for (let i = 0; i < winningStacks.length; i++) {
+    position = winningStacks[i];
+
     if (allEqual(position)) {
       const winnerSymbol = position[0];
       winner = room.players.find((player) => player.symbol === winnerSymbol);
+
+      // Exit early if someone is winner
+      if (winner) break;
     }
   }
-
-  // Check if any one of the
-  // winning positions has equal values
-  winningStacks.forEach(checkWinner);
 
   // Don't check for tie game if someone is winner already
   if (winner) return winner;
