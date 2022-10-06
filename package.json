@@ -5,7 +5,7 @@
   "description": "",
   "main": "server/main.js",
   "scripts": {
-    "start": "node server",
+    "start": "node server/main.js",
     "dev": "cross-env DEBUG=app,app:* NODE_ENV=development nodemon server/main.js"
   },
   "author": "Piyush",
